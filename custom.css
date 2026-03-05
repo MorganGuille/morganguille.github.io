@@ -1,4 +1,227 @@
-header{
-  display:flex;
-  flex-direction:row
+/* =========================================
+   1. CSS Variables (Theming)
+   ========================================= */
+:root {
+  /* Light Mode (Default) */
+  --bg-color: #fdfdfd;
+  --text-main: #222222;
+  --text-muted: #555555;
+  --accent-color: #005fcc;
+  --border-color: #eaeaec;
+  --max-width: 800px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Mode Overrides */
+    --bg-color: #121212;
+    --text-main: #e0e0e0;
+    --text-muted: #a0a0a0;
+    --accent-color: #66b2ff;
+    --border-color: #333333;
+  }
+}
+
+/* =========================================
+   2. CSS Reset & Base Styles
+   ========================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* Modern system font stack */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  /* Smooth transition when the system switches themes */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 0 1.5rem;
+  /* Base padding for mobile */
+}
+
+/* =========================================
+   3. Typography & Links
+   ========================================= */
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: var(--text-main);
+}
+
+p {
+  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+/* =========================================
+   4. Semantic Layout Structure
+   ========================================= */
+/* Center the main content constraints */
+header,
+footer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+main>h1,
+main>p {
+  grid-column: 1 / -1;
+}
+
+/* Header & Navigation */
+header {
+  padding: 3rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* Main Content Sections */
+section {
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+section:last-of-type {
+  border-bottom: none;
+}
+
+/* Article Content */
+article {
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  padding: 3rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* =========================================
+   5. Custom
+   ========================================= */
+
+.image-window-vertical {
+  width: 400px;
+  height: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 8px;
+  margin: 0 auto 1.5rem;
+
+  scrollbar-width: none;
+
+}
+
+.image-window-vertical::-webkit-scrollbar {
+  display: none;
+}
+
+.image-window-vertical img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.image-window-vertical-snap {
+  width: 100%;
+  height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 8px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-type: y mandatory;
+  /* hide both scrollbars */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.image-window-vertical-snap::-webkit-scrollbar {
+  display: none;
+}
+
+.image-window-vertical-snap img {
+  height: 100%;
+  width: auto;
+  display: block;
+  scroll-snap-align: center;
+  flex-shrink: 0;
+}
+
+/* Full-width article for landscape content */
+article.full-width {
+  grid-column: 1 / -1;
+}
+
+
+/* =========================================
+   6. Responsiveness
+   ========================================= */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  nav ul {
+    justify-content: center;
+  }
+
+  section {
+    padding: 3rem 0;
+  }
+
+  main {
+    grid-template-columns: 1fr;
+  }
 }
