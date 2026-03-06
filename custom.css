@@ -167,7 +167,7 @@ footer {
   display: block;
 }
 
-.image-window-vertical-snap {
+.image-window-horizontal-snap {
   width: 100%;
   height: 400px;
   overflow-y: auto;
@@ -177,16 +177,15 @@ footer {
   display: flex;
   flex-direction: column;
   scroll-snap-type: y mandatory;
-  /* hide both scrollbars */
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
-.image-window-vertical-snap::-webkit-scrollbar {
+.image-window-horizontal-snap::-webkit-scrollbar {
   display: none;
 }
 
-.image-window-vertical-snap img {
+.image-window-horizontal-snap img {
   height: 100%;
   width: auto;
   display: block;
