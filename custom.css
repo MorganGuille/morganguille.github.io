@@ -80,6 +80,7 @@ a:hover {
   opacity: 0.8;
 }
 
+
 /* =========================================
    4. Semantic Layout Structure
    ========================================= */
@@ -90,10 +91,18 @@ footer {
   margin: 0 auto;
 }
 
+/* Replace your main rule with this: */
 main {
   max-width: var(--max-width);
   margin: 0 auto;
+}
+
+/* Replace your section rule with this: */
+section {
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--border-color);
   display: grid;
+  /* <--- Move grid here */
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
 }
@@ -146,7 +155,8 @@ footer {
    ========================================= */
 
 .image-window-vertical {
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   height: 600px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -221,22 +231,46 @@ article.full-width {
 /* =========================================
    6. Responsiveness
    ========================================= */
-@media (max-width: 600px) {
+/* Replace your entire @media (max-width: 600px) block with this: */
+@media (max-width: 800px) {
   header {
     flex-direction: column;
     text-align: center;
     padding: 2rem 0;
   }
 
-  nav ul {
+  nav {
+    /* Fixed target */
     justify-content: center;
   }
 
   section {
     padding: 3rem 0;
+    grid-template-columns: 1fr;
+    /* Make projects stack vertically on mobile */
   }
 
-  main {
-    grid-template-columns: 1fr;
+  .image-window-horizontal-snap img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
+    
   }
+
+  /* Optional: Ensure full-width items stack properly */
+  article.full-width {
+    grid-column: 1 / -1;
+  }
+}
+
+
+
+@media (prefers-reduced-motion: no-preference) {
+
+  html {
+
+    scroll-behavior: smooth;
+
+  }
+
 }
